@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color Picker without jQuery</title>
+  <link rel="stylesheet" href="css/colorpicker.css">
+  <style>
+    body { max-width: 900px; margin: 40px auto; padding: 0 16px; font: 16px/1.5 sans-serif; color: #333; }
+    h2 { margin-top: 40px; }
+    pre { background: #f4f4f4; padding: 12px; overflow: auto; }
+    #swatch { display: inline-block; width: 36px; height: 36px; vertical-align: middle; border: 1px solid #999; background: #0000ff; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Color Picker without jQuery</h1>
+  <p>This page doesn't load jQuery.</p>
+
+  <h2>Input field</h2>
+  <p><input type="text" id="field" value="336699"> <button type="button" id="reset">setColor('#ff0000')</button></p>
+  <pre>var picker = new ColorPicker('#field', {
+  onBeforeShow: function () { picker.setColor(this.value); },
+  onSubmit: function (hsb, hex, rgb, el) { el.value = hex; picker.hide(); }
+});</pre>
+
+  <h2>Swatch with live preview</h2>
+  <p><span id="swatch"></span> <code id="hex">0000ff</code></p>
+  <pre>new ColorPicker('#swatch', {
+  color: '#0000ff',
+  onChange: function (hsb, hex) {
+    document.getElementById('swatch').style.backgroundColor = '#' + hex;
+    document.getElementById('hex').textContent = hex;
+  }
+});</pre>
+
+  <h2>Flat</h2>
+  <div id="flat"></div>
+  <pre>new ColorPicker('#flat', { flat: true, color: { r: 0, g: 160, b: 80 } });</pre>
+
+  <script src="js/colorpicker.js"></script>
+  <script>
+    var picker = new ColorPicker('#field', {
+      onBeforeShow: function () { picker.setColor(this.value); },
+      onSubmit: function (hsb, hex, rgb, el) { el.value = hex; picker.hide(); }
+    });
+    document.getElementById('field').addEventListener('keyup', function () { picker.setColor(this.value); });
+    document.getElementById('reset').addEventListener('click', function () {
+      picker.setColor('#ff0000');
+      document.getElementById('field').value = 'ff0000';
+    });
+
+    new ColorPicker('#swatch', {
+      color: '#0000ff',
+      onChange: function (hsb, hex) {
+        document.getElementById('swatch').style.backgroundColor = '#' + hex;
+        document.getElementById('hex').textContent = hex;
+      }
+    });
+
+    new ColorPicker('#flat', { flat: true, color: { r: 0, g: 160, b: 80 } });
+  </script>
+</body>
+</html>

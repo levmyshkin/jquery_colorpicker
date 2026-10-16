@@ -1,0 +1,19 @@
+{
+  "name": "jquery-colorpicker",
+  "version": "2.0.0",
+  "description": "Eyecon Color Picker without dependencies; the jQuery plugin API keeps working when jQuery is loaded.",
+  "main": "js/colorpicker.js",
+  "scripts": {
+    "test": "node test/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/levmyshkin/jquery_colorpicker.git"
+  },
+  "license": "(MIT OR GPL-1.0)",
+  "devDependencies": {
+    "jquery3": "npm:jquery@^3.7.1",
+    "jquery4": "npm:jquery@^4.0.0",
+    "playwright-core": "^1.56.0"
+  }
+}
